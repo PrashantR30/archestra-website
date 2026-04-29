@@ -1,6 +1,6 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
-import { Roboto_Mono } from 'next/font/google';
+import { Inter_Tight, JetBrains_Mono } from 'next/font/google';
 
 import ConditionalAnalytics from '@components/ConditionalAnalytics';
 import GDPRConsentPanel from '@components/GDPRConsentPanel';
@@ -8,9 +8,16 @@ import constants from '@constants';
 
 import './globals.css';
 
-const robotoMono = Roboto_Mono({
+const interTight = Inter_Tight({
   subsets: ['latin'],
-  variable: '--font-roboto-mono',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-inter-tight',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-jetbrains-mono',
 });
 
 const {
@@ -135,7 +142,7 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       </head>
-      <body className={robotoMono.variable}>
+      <body className={`${interTight.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         {children}
         <GDPRConsentPanel />
         <ConditionalAnalytics gaId={constants.googleAnalytics.measurementId} />

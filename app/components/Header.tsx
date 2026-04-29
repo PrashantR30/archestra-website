@@ -20,64 +20,54 @@ export default function Header() {
   const stats = useCommunityStats();
 
   return (
-    <header className="border-b border-gray-200 bg-white">
-      <div className="container flex items-center px-4 md:px-6 justify-between h-16">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="relative h-10 w-10 shrink-0">
-              <Image src={websiteUrls.logoRelativeUrl} alt={`${companyName} Logo`} fill className="object-contain" />
-            </div>
-            <span className="font-[family-name:var(--font-roboto-mono)] text-2xl text-black hidden lg:inline">
-              Archestra.AI
-            </span>
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/85 backdrop-blur-md">
+      <div className="mx-auto flex h-16 w-full max-w-[1320px] items-center gap-6 px-5 sm:px-8 lg:px-14">
+        <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+          <div className="relative h-[26px] w-[26px] shrink-0">
+            <Image src={websiteUrls.logoRelativeUrl} alt={`${companyName} Logo`} fill className="object-contain" />
+          </div>
+          <span className="hidden lg:inline font-mono text-[15px] font-medium tracking-tight text-gray-900">
+            Archestra<span className="text-gray-400">.AI</span>
+          </span>
+        </Link>
+
+        <nav className="hidden lg:flex items-center gap-6 ml-4">
+          <Link href="/book-demo" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+            Book Demo
           </Link>
-          <nav className="hidden lg:flex items-center gap-6 mt-1">
-            <Link href="/book-demo" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Book Demo
-            </Link>
+          <Link href="/blog" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+            Blog
+          </Link>
+          <Link href="/docs" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+            Docs
+          </Link>
+          <Link href="/mcp-catalog" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+            MCP Catalog
+          </Link>
+          <Link href="/about" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+            About Us
+          </Link>
+          <Link href="/careers" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+            Careers
+          </Link>
+          <Link
+            href="/community-stream"
+            className="text-sm text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-1.5"
+          >
+            Community
+            {stats.totalTodayMessages > 0 && (
+              <span className="bg-red-500 text-white text-[11px] font-bold rounded-full min-w-[20px] h-5 flex items-center justify-center px-1.5">
+                {stats.totalTodayMessages}
+              </span>
+            )}
+          </Link>
+        </nav>
 
-            <Link href="/blog" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Blog
-            </Link>
-            <Link href="/docs" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Docs
-            </Link>
-            <Link
-              href="/mcp-catalog"
-              className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors"
-            >
-              MCP Catalog
-            </Link>
-
-            <Link href="/about" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              About Us
-            </Link>
-
-            <Link href="/careers" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Careers
-            </Link>
-
-            <Link
-              href="/community-stream"
-              className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors flex items-center gap-1.5"
-            >
-              Community
-              {stats.totalTodayMessages > 0 && (
-                <span className="bg-red-500 text-white text-[11px] font-bold rounded-full min-w-[20px] h-5 flex items-center justify-center px-1.5">
-                  {stats.totalTodayMessages}
-                </span>
-              )}
-            </Link>
-          </nav>
-        </div>
-
-        {/* Right side - GitHub Star */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="ml-auto hidden lg:flex items-center gap-3">
           <GitHubStarButton />
         </div>
 
-        {/* Mobile hamburger button and GitHub star */}
-        <div className="flex lg:hidden items-center gap-2">
+        <div className="ml-auto flex lg:hidden items-center gap-2">
           <GitHubStarButton />
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -89,59 +79,54 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu dropdown */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-200 bg-gray-100">
+        <div className="lg:hidden border-t border-gray-200 bg-white">
           <nav className="flex flex-col px-4 py-2">
             <Link
               href="/book-demo"
-              className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-medium rounded-lg transition-colors"
+              className="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Book Demo
             </Link>
-
             <Link
               href="/blog"
-              className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-medium rounded-lg transition-colors"
+              className="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Blog
             </Link>
             <Link
               href="/docs"
-              className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-medium rounded-lg transition-colors"
+              className="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Docs
             </Link>
             <Link
               href="/mcp-catalog"
-              className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-medium rounded-lg transition-colors"
+              className="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               MCP Catalog
             </Link>
-
             <Link
               href="/about"
-              className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-medium rounded-lg transition-colors"
+              className="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About Us
             </Link>
-
             <Link
               href="/careers"
-              className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-medium rounded-lg transition-colors"
+              className="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Careers
             </Link>
-
             <Link
               href="/community-stream"
-              className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-medium rounded-lg transition-colors flex items-center gap-1.5"
+              className="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors flex items-center gap-1.5"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Community

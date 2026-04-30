@@ -430,7 +430,7 @@ export default function DocContent({ content }: DocContentProps) {
             ) : (
               // Inline code
               <code
-                className="bg-gray-50 px-1.5 py-px rounded-[3px] border border-gray-200 text-[12.5px] font-mono break-all"
+                className="bg-gray-50 px-1.5 py-px rounded-[3px] border border-gray-200 text-[12.5px] font-mono whitespace-nowrap"
                 {...props}
               >
                 {children}

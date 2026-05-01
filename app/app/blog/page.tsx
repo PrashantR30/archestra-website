@@ -39,19 +39,31 @@ export default function BlogPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Header />
 
-      <main className="flex-1 relative flex flex-col">
+      <main className="flex-1 relative flex flex-col bg-[#fafafa] overflow-hidden">
         <div
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 pointer-events-none opacity-60"
           style={{
             backgroundImage:
-              'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
+              'linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
+            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
           }}
         />
 
         <div className="container relative z-10 px-4 md:px-6 py-16 max-w-7xl mx-auto">
           <div className="mb-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Blog</h1>
+            <h1
+              className="font-medium text-gray-950 m-0 mb-6"
+              style={{
+                fontSize: 'clamp(40px, 5.4vw, 64px)',
+                lineHeight: 1.02,
+                letterSpacing: '-0.028em',
+                textWrap: 'balance',
+              }}
+            >
+              Blog
+            </h1>
             <p className="text-xl text-gray-700">Latest news, updates, and insights from the {companyName} team</p>
           </div>
 

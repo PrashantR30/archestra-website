@@ -1,49 +1,78 @@
 'use client';
 
-import Script from 'next/script';
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import Footer from '@components/Footer';
 import Header from '@components/Header';
 
+declare global {
+  interface Window {
+    Calendly?: {
+      initInlineWidget: (opts: { url: string; parentElement: HTMLElement }) => void;
+    };
+  }
+}
+
+const CALENDLY_URL = 'https://calendly.com/d/cswr-dwp-tsr/archestra-enterprise-demo';
+const CALENDLY_CSS = 'https://assets.calendly.com/assets/external/widget.css';
+const CALENDLY_JS = 'https://assets.calendly.com/assets/external/widget.js';
+
 export default function BookDemoPage() {
-  const [isLoading, setIsLoading] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let cssLink: HTMLLinkElement | null = null;
+    if (!document.querySelector(`link[href="${CALENDLY_CSS}"]`)) {
+      cssLink = document.createElement('link');
+      cssLink.rel = 'stylesheet';
+      cssLink.href = CALENDLY_CSS;
+      document.head.appendChild(cssLink);
+    }
+
+    const init = () => {
+      if (!window.Calendly || !containerRef.current) return;
+      containerRef.current.innerHTML = '';
+      window.Calendly.initInlineWidget({
+        url: CALENDLY_URL,
+        parentElement: containerRef.current,
+      });
+    };
+
+    if (window.Calendly) {
+      init();
+      return () => {
+        cssLink?.remove();
+      };
+    }
+
+    const existing = document.querySelector<HTMLScriptElement>(`script[src="${CALENDLY_JS}"]`);
+    let script: HTMLScriptElement;
+    if (existing) {
+      script = existing;
+      script.addEventListener('load', init);
+    } else {
+      script = document.createElement('script');
+      script.src = CALENDLY_JS;
+      script.async = true;
+      script.addEventListener('load', init);
+      document.body.appendChild(script);
+    }
+
+    return () => {
+      script.removeEventListener('load', init);
+      cssLink?.remove();
+    };
+  }, []);
 
   return (
     <>
+      <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="" />
+      <link rel="preconnect" href="https://calendly.com" crossOrigin="" />
       <Header />
-      <main className="min-h-screen bg-white">
-        {/* Calendly inline widget */}
-        <section className="py-16 px-4">
+      <main className="bg-white">
+        <section className="py-8 px-4">
           <div className="max-w-5xl mx-auto">
-            <div className="relative">
-              {/* Loading spinner */}
-              {isLoading && (
-                <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
-                  <div className="text-center">
-                    <div className="inline-flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-                    </div>
-                    <p className="mt-4 text-gray-600">Loading scheduling widget...</p>
-                  </div>
-                </div>
-              )}
-              <div
-                className="calendly-inline-widget"
-                data-url="https://calendly.com/d/cswr-dwp-tsr/archestra-enterprise-demo"
-                style={{ minWidth: '320px', height: '1100px' }}
-                onLoad={() => setIsLoading(false)}
-              />
-            </div>
-            <Script
-              type="text/javascript"
-              src="https://assets.calendly.com/assets/external/widget.js"
-              async
-              onLoad={() => {
-                // Give Calendly a moment to fully initialize
-                setTimeout(() => setIsLoading(false), 1000);
-              }}
-            />
+            <div ref={containerRef} style={{ minWidth: '320px', height: '700px' }} />
           </div>
         </section>
       </main>

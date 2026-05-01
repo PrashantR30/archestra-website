@@ -141,6 +141,10 @@ export default function RootLayout({
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+        <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="" />
+        <link rel="preconnect" href="https://calendly.com" crossOrigin="" />
+        <link rel="prefetch" href="https://assets.calendly.com/assets/external/widget.css" as="style" />
+        <link rel="prefetch" href="https://assets.calendly.com/assets/external/widget.js" as="script" />
       </head>
       <body className={`${interTight.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         {children}

@@ -234,13 +234,15 @@ export default function MCPCatalogPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Header />
 
-      <main className="flex-1 relative flex flex-col">
+      <main className="flex-1 relative flex flex-col bg-[#fafafa] overflow-hidden">
         <div
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 pointer-events-none opacity-60"
           style={{
             backgroundImage:
-              'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
+              'linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
+            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
           }}
         />
 
@@ -249,8 +251,16 @@ export default function MCPCatalogPage() {
             <div className="flex flex-col xl:flex-row gap-8 xl:gap-12 items-start">
               <div className="flex-1 w-full">
                 <div className="flex items-center gap-3 mb-4">
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-                    MCP Catalog <span className="text-2xl sm:text-3xl lg:text-4xl text-gray-600">& Trust Score</span>
+                  <h1
+                    className="font-medium text-gray-950 m-0"
+                    style={{
+                      fontSize: 'clamp(40px, 5.4vw, 64px)',
+                      lineHeight: 1.02,
+                      letterSpacing: '-0.028em',
+                      textWrap: 'balance',
+                    }}
+                  >
+                    MCP Catalog <span className="text-gray-600">& Trust Score</span>
                   </h1>
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
                     Beta

@@ -121,31 +121,32 @@ export default function CareersPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }} />
       <Header />
 
-      <main className="flex-1 relative overflow-hidden">
-        {/* Hero section with gradient background */}
+      <main className="flex-1 relative overflow-hidden bg-[#fafafa]">
+        {/* Hero section with grid background */}
         <section className="relative">
-          {/* Gradient mesh background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-violet-50" />
           <div
-            className="absolute inset-0 opacity-40"
+            className="absolute inset-0 pointer-events-none opacity-60"
             style={{
               backgroundImage:
-                'radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
-            }}
-          />
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage:
-                'linear-gradient(to right, #6366f1 1px, transparent 1px), linear-gradient(to bottom, #6366f1 1px, transparent 1px)',
-              backgroundSize: '40px 40px',
+                'linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px)',
+              backgroundSize: '80px 80px',
+              WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
+              maskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
             }}
           />
 
           <div className="container relative z-10 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
             {/* Header */}
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 tracking-tight">
+              <h1
+                className="font-medium text-gray-950 m-0 mb-5"
+                style={{
+                  fontSize: 'clamp(40px, 5.4vw, 64px)',
+                  lineHeight: 1.02,
+                  letterSpacing: '-0.028em',
+                  textWrap: 'balance',
+                }}
+              >
                 Join us to build the next generation of{' '}
                 <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
                   open source infrastructure
@@ -157,13 +158,15 @@ export default function CareersPage() {
         </section>
 
         {/* Main content */}
-        <section className="relative bg-white">
+        <section className="relative">
           <div
-            className="absolute inset-0 opacity-[0.02]"
+            className="absolute inset-0 pointer-events-none opacity-60"
             style={{
               backgroundImage:
-                'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)',
-              backgroundSize: '40px 40px',
+                'linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px)',
+              backgroundSize: '80px 80px',
+              WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
+              maskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
             }}
           />
 

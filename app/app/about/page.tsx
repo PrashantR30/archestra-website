@@ -63,14 +63,16 @@ export default function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <Header />
 
-      <main className="flex-1 relative">
+      <main className="flex-1 relative bg-[#fafafa] overflow-hidden">
         {/* Grid Background */}
         <div
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 pointer-events-none opacity-60"
           style={{
             backgroundImage:
-              'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
+              'linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
+            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent)',
           }}
         />
 
